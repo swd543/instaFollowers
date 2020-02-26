@@ -10,6 +10,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
@@ -113,9 +114,10 @@ public class Dumper {
     }
 
     public static void main(String[] args) throws IOException, URISyntaxException {
-        var c=new DefaultHttpClient();
-        var r=addUpdate("Buga","Boxes", c);
-        System.out.println(r);
+        try(var c= HttpClientBuilder.create().build()){
+            var r=addUpdate("Buga","Boxes", c);
+            System.out.println(r);
+        }
     }
 
     private static JsonNode navigate(JsonNode n, final String[] hierarchy){

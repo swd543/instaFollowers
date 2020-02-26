@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
@@ -42,8 +42,9 @@ public class Main {
         Collection<Person> compile(){
             var toReturn = new ArrayList<>(initialFollowers.value);
             deltas.entrySet()
-                    .parallelStream()
-                    .forEach(d->{
+                    .stream()
+                    .sorted(Comparator.comparing(Map.Entry::getKey))
+                    .forEachOrdered(d->{
                         if(d.getValue().key==Action.ADDED_FOLLOWERS) toReturn.addAll(d.getValue().value);
                         if(d.getValue().key==Action.UNFOLLOWERS) toReturn.removeAll(d.getValue().value);
                     });
@@ -148,7 +149,7 @@ public class Main {
     private static final String DOC_TITLE="Instagram";
 
     public static void main(String[] args) throws IOException, URISyntaxException {
-        try(var c=new DefaultHttpClient()){
+        try(var c=HttpClientBuilder.create().build()){
             var followers=getAllFollowers(c);
             System.err.println("Current followers : "+followers.size());
 
