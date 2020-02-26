@@ -9,7 +9,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
@@ -65,7 +64,7 @@ public class Dumper {
     private static HttpResponse add(String title, String content, Long id, HttpClient client) throws IOException {
         var post=new HttpPost("https://scribz.net/Note/StoreNote");
         post.addHeader("Content-Type","application/json");
-        post.addHeader("Cookie","ARRAffinity=c9eb9d2631be20ed8d13d67484e0b6ca47425fbcb91c424c29e52a3b6d4b5937; __utma=70802834.885333854.1582680014.1582680014.1582680014.1; __utmc=70802834; __utmz=70802834.1582680014.1.1.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided); __utmt=1; __utmb=70802834.10.10.1582680014; SCRIBZ_USER=QeEWbICUht4TZXb0OJoRKl4z1mWMZFFxFpcWawQcf5y10I9Cwdk+bHkcPCZmz639Cxr7REnEHDOQFo0ddHsv9GDy7uT2yFr6ZcMZeVt1Z5IEMgQ3rG67wzoUm0MqaGRtx4eChYvu0XcPzQ8fbRHiBQ9kQfBUFEght2Yfdjv71FfqumAFfqZ4UENCkmnnIuIcR3k6GmHOMdO51pR3XSfZzbNZqtgAzCo8KrDu5baBGvu2VDZTT2ICEyD31uLGLP74WFNBcL3LdIznkU/9cnPKBHGAMpitvs4MaLLfFFXbsVMpPOgcYwmOSq/bFs/jongVXvehzjalfwv3MCUry0g64XbjJ1RYjO9rigfdOWpjsdDhuqPjZiPbXeWj+T9bkEKA8T84PXhDbSwXsWcnJCmXEBzIVLDSWeX62WPEndObYHU=");
+        post.addHeader("Cookie",System.getenv("SCRIBD_COOKIE"));
         var message=new NotePost();
         message.id=id;
         message.body=content;
@@ -79,7 +78,7 @@ public class Dumper {
     private static List<NotePost> getAll(HttpClient client) throws IOException {
         var post=new HttpPost("https://scribz.net/Note/LoadStubs");
         post.addHeader("Content-Type","application/json");
-        post.addHeader("Cookie","ARRAffinity=c9eb9d2631be20ed8d13d67484e0b6ca47425fbcb91c424c29e52a3b6d4b5937; __utma=70802834.885333854.1582680014.1582680014.1582680014.1; __utmc=70802834; __utmz=70802834.1582680014.1.1.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided); __utmt=1; __utmb=70802834.10.10.1582680014; SCRIBZ_USER=QeEWbICUht4TZXb0OJoRKl4z1mWMZFFxFpcWawQcf5y10I9Cwdk+bHkcPCZmz639Cxr7REnEHDOQFo0ddHsv9GDy7uT2yFr6ZcMZeVt1Z5IEMgQ3rG67wzoUm0MqaGRtx4eChYvu0XcPzQ8fbRHiBQ9kQfBUFEght2Yfdjv71FfqumAFfqZ4UENCkmnnIuIcR3k6GmHOMdO51pR3XSfZzbNZqtgAzCo8KrDu5baBGvu2VDZTT2ICEyD31uLGLP74WFNBcL3LdIznkU/9cnPKBHGAMpitvs4MaLLfFFXbsVMpPOgcYwmOSq/bFs/jongVXvehzjalfwv3MCUry0g64XbjJ1RYjO9rigfdOWpjsdDhuqPjZiPbXeWj+T9bkEKA8T84PXhDbSwXsWcnJCmXEBzIVLDSWeX62WPEndObYHU=");
+        post.addHeader("Cookie",System.getenv("SCRIBD_COOKIE"));
         var objectMapper=new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         var r=client.execute(post);
         var jsonString=EntityUtils.toString(r.getEntity());
@@ -99,7 +98,7 @@ public class Dumper {
         if(id.isPresent()){
             var post=new HttpPost("https://scribz.net/Note/LoadNote");
             post.addHeader("Content-Type","application/json");
-            post.addHeader("Cookie","ARRAffinity=c9eb9d2631be20ed8d13d67484e0b6ca47425fbcb91c424c29e52a3b6d4b5937; __utma=70802834.885333854.1582680014.1582680014.1582680014.1; __utmc=70802834; __utmz=70802834.1582680014.1.1.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided); __utmt=1; __utmb=70802834.10.10.1582680014; SCRIBZ_USER=QeEWbICUht4TZXb0OJoRKl4z1mWMZFFxFpcWawQcf5y10I9Cwdk+bHkcPCZmz639Cxr7REnEHDOQFo0ddHsv9GDy7uT2yFr6ZcMZeVt1Z5IEMgQ3rG67wzoUm0MqaGRtx4eChYvu0XcPzQ8fbRHiBQ9kQfBUFEght2Yfdjv71FfqumAFfqZ4UENCkmnnIuIcR3k6GmHOMdO51pR3XSfZzbNZqtgAzCo8KrDu5baBGvu2VDZTT2ICEyD31uLGLP74WFNBcL3LdIznkU/9cnPKBHGAMpitvs4MaLLfFFXbsVMpPOgcYwmOSq/bFs/jongVXvehzjalfwv3MCUry0g64XbjJ1RYjO9rigfdOWpjsdDhuqPjZiPbXeWj+T9bkEKA8T84PXhDbSwXsWcnJCmXEBzIVLDSWeX62WPEndObYHU=");
+            post.addHeader("Cookie",System.getenv("SCRIBD_COOKIE"));
             var query=new GetQuery();
             query.id=id.getAsLong();
             var objectMapper=new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
