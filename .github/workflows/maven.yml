@@ -5,6 +5,11 @@ on:
   push:
     branches: [master]
 
+env:
+  INSTA_COOKIE: ${{secrets.INSTA_COOKIE}}
+  INSTA_QUERY_HASH: ${{secrets.INSTA_QUERY_HASH}}
+  SCRIBD_COOKIE:  ${{secrets.SCRIBD_COOKIE}}
+
 jobs:
   build:
     runs-on: [ubuntu-latest]
