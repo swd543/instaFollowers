@@ -8,7 +8,6 @@ function App() {
   useEffect(()=>{
     const getNoteByName=(name)=>()=>{
       fetch('Note/LoadStubs', {
-        cache:'no-cache',
         method:'POST',
         credentials:'include',
         headers:{'Content-Type': 'application/json'},
@@ -23,7 +22,6 @@ function App() {
   
     const getNoteById=(id)=>{
       fetch('Note/LoadNote', {
-        cache:'no-cache',
         method:'POST',
         credentials:'include',
         headers:{'Content-Type': 'application/json'},
