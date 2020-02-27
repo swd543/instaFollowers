@@ -11,3 +11,5 @@ buildNumber.properties
 target
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
+gui/node_modules
+gui/yarn.lock
