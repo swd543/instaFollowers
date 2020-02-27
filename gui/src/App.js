@@ -9,6 +9,7 @@ function App() {
     const getNoteByName=(name)=>()=>{
       fetch('Note/LoadStubs', {
         method:'POST',
+        mode:'cors',
         credentials:'include',
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify({sort: 0, filter: null})
@@ -23,6 +24,7 @@ function App() {
     const getNoteById=(id)=>{
       fetch('Note/LoadNote', {
         method:'POST',
+        mode:'cors',
         credentials:'include',
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify({id})
@@ -39,6 +41,7 @@ function App() {
 
     fetch('login',{
       method:'POST',
+      mode:'cors',
       headers: {
         'Content-Type': 'application/json'
       },
