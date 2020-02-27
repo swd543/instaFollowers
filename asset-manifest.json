@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/instaFollowers/static/css/main.2d7d12eb.chunk.css",
+    "main.js": "/instaFollowers/static/js/main.7f10ec23.chunk.js",
+    "main.js.map": "/instaFollowers/static/js/main.7f10ec23.chunk.js.map",
+    "runtime-main.js": "/instaFollowers/static/js/runtime-main.76308c0c.js",
+    "runtime-main.js.map": "/instaFollowers/static/js/runtime-main.76308c0c.js.map",
+    "static/js/2.64744148.chunk.js": "/instaFollowers/static/js/2.64744148.chunk.js",
+    "static/js/2.64744148.chunk.js.map": "/instaFollowers/static/js/2.64744148.chunk.js.map",
+    "index.html": "/instaFollowers/index.html",
+    "precache-manifest.a657009198c7175314de57a1e303a932.js": "/instaFollowers/precache-manifest.a657009198c7175314de57a1e303a932.js",
+    "service-worker.js": "/instaFollowers/service-worker.js",
+    "static/css/main.2d7d12eb.chunk.css.map": "/instaFollowers/static/css/main.2d7d12eb.chunk.css.map",
+    "static/js/2.64744148.chunk.js.LICENSE.txt": "/instaFollowers/static/js/2.64744148.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/instaFollowers/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.76308c0c.js",
+    "static/js/2.64744148.chunk.js",
+    "static/css/main.2d7d12eb.chunk.css",
+    "static/js/main.7f10ec23.chunk.js"
+  ]
+}
