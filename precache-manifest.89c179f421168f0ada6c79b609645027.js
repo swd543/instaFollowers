@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "17dec1603659ab187a87f0b9a8ccc8a8",
+    "revision": "8920a71ca89c3c7cb4c8f4d812951828",
     "url": "/instaFollowers/index.html"
   },
   {
-    "revision": "96e405ddcf2bc2159586",
+    "revision": "5816a6e0a04cb92655ca",
     "url": "/instaFollowers/static/css/main.2d7d12eb.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/instaFollowers/static/js/2.64744148.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "96e405ddcf2bc2159586",
-    "url": "/instaFollowers/static/js/main.f8daf20b.chunk.js"
+    "revision": "5816a6e0a04cb92655ca",
+    "url": "/instaFollowers/static/js/main.2b11db49.chunk.js"
   },
   {
     "revision": "060fbf0f17c0798a8275",
