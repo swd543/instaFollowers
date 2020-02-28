@@ -9,7 +9,6 @@ function App() {
     const getNoteByName=(name)=>()=>{
       fetch('Note/LoadStubs', {
         method:'POST',
-        mode:'cors',
         credentials:'include',
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify({sort: 0, filter: null})
@@ -24,7 +23,6 @@ function App() {
     const getNoteById=(id)=>{
       fetch('Note/LoadNote', {
         method:'POST',
-        mode:'cors',
         credentials:'include',
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify({id})
@@ -41,13 +39,10 @@ function App() {
 
     fetch('login',{
       method:'POST',
-      mode:'cors',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({UserName:'swd543', Password:'helloscribz!22213',RememberMe:true})
     })
-    .then(setAuthenticated(true))
+    .then(r=>r.type!=="opaque" && r.status===200 && setAuthenticated(true))
     .then(getNoteByName("Instagram"))
     .catch(console.log)
   }, [])
